@@ -11,20 +11,20 @@ import com.thg.accelerator23.connectn.ai.sirconnectabitmore.minimax.Minimax;
 
 import java.util.HashMap;
 
-public class SirConnectABitMore extends Player {
+public class ConnectFourEgoRestore extends Player {
   private Minimax<Integer, Board, Counter> minimax;
   private int minDepth;
   private int maxDepth;
 
-  public SirConnectABitMore(Counter counter, GameConfig gameConfig, int minDepth, int maxDepth) {
-    super(counter, SirConnectABitMore.class.getName());
+  public ConnectFourEgoRestore(Counter counter, GameConfig gameConfig, int minDepth, int maxDepth) {
+    super(counter, ConnectFourEgoRestore.class.getName());
 
     minimax = new Minimax<>(new BoardStateGenerator(gameConfig), new BoardAnalyser(gameConfig));
     this.minDepth = minDepth;
     this.maxDepth = maxDepth;
   }
 
-  public SirConnectABitMore(Counter counter) {
+  public ConnectFourEgoRestore(Counter counter) {
     this(counter, new GameConfig(10, 8, 4), 7, 40);
   }
 

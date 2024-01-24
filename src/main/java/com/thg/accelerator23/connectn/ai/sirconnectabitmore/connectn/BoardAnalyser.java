@@ -146,7 +146,7 @@ public class BoardAnalyser implements StateAnalyser<Board, Counter> {
                         int bestORun = 0;
                         for (int y = nullY - 1; y >= 0; y--) {
                             if(BoardHacker.getCounterQuickly(board, nullX, y) != null) {
-                                continue;
+                                break;
                             }
                             List<int[][]> fours =
                                 fourArrayByPosition.get(nullX * board.getConfig().getHeight() + y);
@@ -174,18 +174,24 @@ public class BoardAnalyser implements StateAnalyser<Board, Counter> {
                                 }
                             }
                         }
-                        int opponentBestRunBelow = 0;
+                        int opponentBestRunBelow;
+                        int ownBestRunBelow;
                         if (utilityCounter == Counter.O) {
                             opponentBestRunBelow = bestXRun;
+                            ownBestRunBelow = bestORun;
                         } else {
                             opponentBestRunBelow = bestORun;
+                            ownBestRunBelow = bestXRun;
                         }
                         if(opponentBestRunBelow == 3) {
-                            rawScore = 5;
+                            rawScore = 10;
                         } else if (opponentBestRunBelow == 2) {
-                            rawScore = 12;
+                            rawScore = 15;
                         } else {
                             rawScore = 30;
+                        }
+                        if(ownBestRunBelow == 3) {
+                            rawScore -= 10;
                         }
                         break;
                     case 4:
